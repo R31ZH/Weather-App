@@ -1,7 +1,5 @@
 var weatherUrl =
-  "https://api.openweathermap.org/data/2.5/weather?q=" +
-  cityName +
-  "&appid=58779aa0221becea365dac01f1c0d429";
+  "https://api.openweathermap.org/data/2.5/weather?q=Denver&appid=58779aa0221becea365dac01f1c0d429";
 var cityName = document.getElementById("form1");
 
 var string = "fefwf";
@@ -14,6 +12,19 @@ cityName.addEventListener("click", function (event) {
 fetch(weatherUrl).then(function (response) {
   console.log(response);
 });
+
+fetch(
+  "https://api.openweathermap.org/data/2.5/weather?q=Denver&appid=58779aa0221becea365dac01f1c0d429"
+)
+  .then(function (weather) {
+    return weather.json();
+  })
+  .then(function (data) {
+    console.log(data);
+    console.log(data.city.coord.lat).then(function (anything) {
+      return anything.json();
+    });
+  });
 
 // GIVEN a weather dashboard with form inputs
 // WHEN I search for a city

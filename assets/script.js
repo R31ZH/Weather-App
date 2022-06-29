@@ -22,14 +22,14 @@ btn.addEventListener("click", function (event) {
       var temp = document.createElement("p");
       var uv = document.createElement("p");
       var wind = document.createElement("p");
-      humidity.textContent = data.main.humidity;
-      wind.textContent = "Wind " + data.wind.speed + " MPH";
-      temp.textContent = data.main.temp;
+      temp.textContent = "Temp: " + data.main.temp + " F";
+      wind.textContent = "Wind: " + data.wind.speed + " MPH";
+      humidity.textContent = "Humidity: " + data.main.humidity + " %";
       // uv.textContent = data.
       listItem.appendChild(header);
-      listItem.appendChild(humidity);
       listItem.appendChild(temp);
       listItem.appendChild(wind);
+      listItem.appendChild(humidity);
       // listItem.appendChild(uv);
       weatherList.appendChild(listItem);
     });

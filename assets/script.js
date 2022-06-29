@@ -1,5 +1,6 @@
 var cityName = document.getElementById("form1");
 var btn = document.getElementById("btn1");
+var weatherList = document.querySelector("ul");
 
 btn.addEventListener("click", function (event) {
   event.preventDefault();
@@ -13,7 +14,11 @@ btn.addEventListener("click", function (event) {
       return weather.json();
     })
     .then(function (data) {
-      console.log(data);
+      for (var i = 0; i < data.length; i++) {
+        var listItem = document.createElement("li");
+        listItem.textContent = data[i].html_url;
+        weatherList.appendChild(listItem);
+      }
     });
 
   var weatherUrl =
@@ -29,6 +34,22 @@ btn.addEventListener("click", function (event) {
       console.log(data);
     });
 });
+
+// function getApi() {
+//   fetch(weatherUrl)
+//     .then(function (response) {
+//       return response.json();
+//     })
+//     .then(function (data) {
+//       for (var i = 0; i < data.length; i++) {
+//         var listItem = document.createElement("li");
+//         listItem.textContent = data[i].html_url;
+//         weatherList.appendChild(listItem);
+//       }
+//     });
+// }
+
+// btn.addEventListener("click", getApi);
 
 // fetch(weatherUrl).then(function (response) {
 //   console.log(response);

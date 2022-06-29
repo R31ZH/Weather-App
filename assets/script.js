@@ -8,17 +8,30 @@ btn.addEventListener("click", function (event) {
     "https://api.openweathermap.org/data/2.5/weather?q=" +
     cityName.value +
     "&appid=58779aa0221becea365dac01f1c0d429";
-  console.log(event.target);
+  // console.log(event.target);
   fetch(weatherUrl)
-    .then(function (weather) {
-      return weather.json();
+    .then(function (response) {
+      return response.json();
     })
     .then(function (data) {
-      for (var i = 0; i < data.length; i++) {
-        var listItem = document.createElement("li");
-        listItem.textContent = data[i].html_url;
-        weatherList.appendChild(listItem);
-      }
+      var listItem = document.createElement("li");
+      console.log(data.main);
+      var header = document.createElement("h3");
+      header.textContent = data.name;
+      var humidity = document.createElement("p");
+      var temp = document.createElement("p");
+      var uv = document.createElement("p");
+      var wind = document.createElement("p");
+      humidity.textContent = data.main.humidity;
+      wind.textContent = "Wind " + data.wind.speed + " MPH";
+      temp.textContent = data.main.temp;
+      // uv.textContent = data.
+      listItem.appendChild(header);
+      listItem.appendChild(humidity);
+      listItem.appendChild(temp);
+      listItem.appendChild(wind);
+      // listItem.appendChild(uv);
+      weatherList.appendChild(listItem);
     });
 
   var weatherUrl =
@@ -31,11 +44,18 @@ btn.addEventListener("click", function (event) {
       return weather.json();
     })
     .then(function (data) {
-      console.log(data);
+      for (let i = 0; i < data.list.length; i++) {
+        const element = data.list[i];
+        console.log(element);
+      }
     });
 });
 
 // function getApi() {
+//   var weatherUrl =
+//     "https://api.openweathermap.org/data/2.5/weather?q=" +
+//     cityName.value +
+//     "&appid=58779aa0221becea365dac01f1c0d429";
 //   fetch(weatherUrl)
 //     .then(function (response) {
 //       return response.json();
@@ -48,7 +68,6 @@ btn.addEventListener("click", function (event) {
 //       }
 //     });
 // }
-
 // btn.addEventListener("click", getApi);
 
 // fetch(weatherUrl).then(function (response) {

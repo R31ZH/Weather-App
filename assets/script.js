@@ -1,13 +1,27 @@
-var weatherUrl =
-  "https://api.openweathermap.org/data/2.5/weather?q=Tucson&appid=58779aa0221becea365dac01f1c0d429";
-var cityName = document.getElementById("btn1");
+var cityName = document.getElementById("form1");
+var btn = document.getElementById("btn1");
 
-cityName.addEventListener("click", function (event) {
+btn.addEventListener("click", function (event) {
   event.preventDefault();
+  var weatherUrl =
+    "https://api.openweathermap.org/data/2.5/weather?q=" +
+    cityName.value +
+    "&appid=58779aa0221becea365dac01f1c0d429";
   console.log(event.target);
-  fetch(
-    "https://api.openweathermap.org/data/2.5/weather?q=Denver&appid=58779aa0221becea365dac01f1c0d429"
-  )
+  fetch(weatherUrl)
+    .then(function (weather) {
+      return weather.json();
+    })
+    .then(function (data) {
+      console.log(data);
+    });
+
+  var weatherUrl =
+    "https://api.openweathermap.org/data/2.5/forecast?q=" +
+    cityName.value +
+    "&appid=58779aa0221becea365dac01f1c0d429";
+  console.log(event.target);
+  fetch(weatherUrl)
     .then(function (weather) {
       return weather.json();
     })
